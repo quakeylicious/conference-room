@@ -63,7 +63,7 @@ export default function LoginPage() {
           <span className="lp-logo-text">Conference Room</span>
         </div>
 
-        <h1 className="lp-heading">Welcome back</h1>
+        <h1 className="lp-heading">Welcome to <span className="bigbenText">BIGBEN</span> Group</h1>
         <p className="lp-subheading">Sign in to your account</p>
 
         <form onSubmit={handleSubmit}>

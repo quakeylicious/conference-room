@@ -67,6 +67,10 @@
 .logoContainer {
   width: 40px;
 }
+.bigbenText {
+  font-weight: bold;
+  color: var(--maroon);
+}
 
 /* LOGO */
 .lp-logo {
