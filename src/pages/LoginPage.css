@@ -1,90 +1,193 @@
-.page {
+/* src/pages/LoginPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --maroon:       #800000;
+  --maroon-light: #a83232;
+  --maroon-muted: rgba(128, 0, 0, 0.12);
+  --gray-900:     #1a1a1e;
+  --gray-800:     #242428;
+  --gray-700:     #2e2e34;
+  --gray-600:     #3a3a42;
+  --gray-400:     #7a7a88;
+  --gray-200:     #c4c4cc;
+  --white:        #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* PAGE */
+.lp-page {
   min-height: 100vh;
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: center;
-  background: #f0f2f5;
+  background: var(--gray-900);
+  position: relative;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
 }
 
-.card {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+/* BACKGROUND GLOWS */
+.lp-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
 }
+
+.lp-glow--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(128, 0, 0, 0.18) 0%, transparent 70%);
+  top: -120px;
+  right: -100px;
+}
+
+.lp-glow--2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(128, 0, 0, 0.1) 0%, transparent 70%);
+  bottom: -80px;
+  left: -60px;
+}
+
+/* CARD */
+.lp-card {
+  background: var(--gray-800);
+  border: 1px solid var(--gray-700);
+  border-radius: 20px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+}
+
 .logoContainer {
-    text-align: center;
+  width: 40px;
 }
 
-.heading {
-  margin-bottom: 8px;
-  font-size: 24px;
+/* LOGO */
+.lp-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
 }
 
-.subheading {
-  color: #888;
-  margin-bottom: 28px;
+.lp-logo-icon {
+  font-size: 22px;
+  color: var(--maroon-light);
 }
 
-.success-msg {
-  color: green;
-  margin-bottom: 16px;
+.lp-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
 }
 
-.field {
-  margin-bottom: 16px;
-}
-
-.label {
-  display: block;
+/* HEADINGS */
+.lp-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
   margin-bottom: 6px;
+}
+
+.lp-subheading {
+  color: var(--gray-400);
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+/* FIELDS */
+.lp-field {
+  margin-bottom: 18px;
+}
+
+.lp-label {
+  display: block;
+  font-size: 12px;
   font-weight: 500;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 7px;
 }
 
-.input {
+.lp-input {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  background: var(--gray-700);
+  border: 1px solid var(--gray-600);
+  border-radius: 10px;
+  color: var(--white);
   font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  padding: 12px 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.input:focus {
-  border-color: #6366f1;
+.lp-input::placeholder {
+  color: var(--gray-400);
 }
 
-.input--error {
-  border-color: red;
+.lp-input:focus {
+  border-color: var(--maroon-light);
+  background: rgba(128, 0, 0, 0.06);
 }
 
-.error-msg {
-  color: red;
+.lp-input--error {
+  border-color: #f87171;
+}
+
+.lp-error-msg {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* FORGOT */
+.lp-forgot {
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 24px;
+}
+
+.lp-forgot-link {
+  color: var(--maroon-light);
   font-size: 13px;
-  margin-top: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.btn {
+.lp-forgot-link:hover {
+  color: #c45050;
+}
+
+/* BUTTON */
+.lp-btn {
   width: 100%;
   padding: 13px;
-  background: #6366f1;
-  color: #fff;
+  background: var(--maroon);
+  color: var(--white);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 15px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.3px;
 }
 
-.btn:hover {
-  opacity: 0.9;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+.lp-btn:hover { background: var(--maroon-light); }
+.lp-btn:active { transform: scale(0.99); }
+.lp-btn:disabled { opacity: 0.5; cursor: not-allowed; }

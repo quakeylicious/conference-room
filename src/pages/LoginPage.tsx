@@ -1,4 +1,6 @@
+// src/pages/LoginPage.tsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 interface FormErrors {
@@ -7,11 +9,11 @@ interface FormErrors {
 }
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<boolean>(false);
 
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
@@ -37,59 +39,67 @@ export default function LoginPage() {
     }
     setErrors({});
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500)); // replace with real API call
     setLoading(false);
-    setSuccess(true);
+    navigate("/dashboard");
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<string>>): void => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setter: React.Dispatch<React.SetStateAction<string>>
+  ): void => {
     setter(e.target.value);
   };
 
   return (
-    <div className="page">
-      <div className="card">
+    <div className="lp-page">
+      <div className="lp-glow lp-glow--1" />
+      <div className="lp-glow lp-glow--2" />
 
-        <div className="logoContainer">
-        <img src = "/images/bbg_logo.webp" className="bigBenLogo"/>
+      <div className="lp-card">
+       
+        <div className="lp-logo">
+          <img className="logoContainer" src="./public/images/bigben.svg"></img>
+          <span className="lp-logo-text">Conference Room</span>
         </div>
 
-        <h1 className="heading">Welcome back</h1>
-        <p className="subheading">Sign in to your account</p>
-
-        {success && <p className="success-msg">✓ Login successful!</p>}
+        <h1 className="lp-heading">Welcome back</h1>
+        <p className="lp-subheading">Sign in to your account</p>
 
         <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label">Email</label>
+          {/* Email */}
+          <div className="lp-field">
+            <label className="lp-label">Email</label>
             <input
               type="text"
               placeholder="you@example.com"
               value={email}
               onChange={(e) => handleInputChange(e, setEmail)}
-              className={`input ${errors.email ? 'input--error' : ''}`}
+              className={`lp-input ${errors.email ? "lp-input--error" : ""}`}
             />
-            {errors.email && <p className="error-msg">{errors.email}</p>}
+            {errors.email && <p className="lp-error-msg">{errors.email}</p>}
           </div>
 
-          <div className="field">
-            <label className="label">Password</label>
+          {/* Password */}
+          <div className="lp-field">
+            <label className="lp-label">Password</label>
             <input
               type="password"
               placeholder="••••••••"
               value={password}
               onChange={(e) => handleInputChange(e, setPassword)}
-              className={`input ${errors.password ? 'input--error' : ''}`}
+              className={`lp-input ${errors.password ? "lp-input--error" : ""}`}
             />
-            {errors.password && <p className="error-msg">{errors.password}</p>}
+            {errors.password && <p className="lp-error-msg">{errors.password}</p>}
           </div>
 
-          <button
-            type="submit"
-            disabled={loading || success}
-            className="btn"
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
+          {/* Forgot */}
+          <div className="lp-forgot">
+            <a className="lp-forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" className="lp-btn" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
       </div>
